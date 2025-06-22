@@ -1,11 +1,11 @@
 import os
 
-from functions.file_utils import check_path
+from functions.file_utils import get_file_data
 
 
 def get_files_info(working_directory, directory=None):
     try:
-        file_data = check_path(working_directory, directory)
+        file_data = get_file_data(working_directory, directory)
         path = file_data["path"]
         is_dir = file_data["is_dir"]
         is_in_workdir = file_data["is_in_workdir"]
@@ -20,6 +20,8 @@ def get_files_info(working_directory, directory=None):
             current_file_path = os.path.join(path, file)
             current_file_size = os.path.getsize(current_file_path)
             listdir_str += f"- {file}: file_size={current_file_size} bytes, is_dir={os.path.isdir(current_file_path)}\n"
+
         return listdir_str
+
     except Exception as e:
         return f"Error: {e}"
