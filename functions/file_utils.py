@@ -5,6 +5,7 @@ def get_file_data(working_directory, target):
     try:
         target_abs_path = os.path.abspath(os.path.join(working_directory, target))
         file_data = {
+            "parent_dir": os.path.dirname(target_abs_path),
             "path": target_abs_path,
             "is_dir": os.path.isdir(target_abs_path),
             "is_file": os.path.isfile(target_abs_path),
