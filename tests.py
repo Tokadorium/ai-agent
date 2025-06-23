@@ -1,24 +1,53 @@
+import sys
+
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
 from functions.write_file import write_file
 from functions.run_python import run_python_file
 
-# print(get_files_info("calculator", "."))
-# print(get_files_info("calculator", "pkg"))
-# print(get_files_info("calculator", "/bin"))
-# print(get_files_info("calculator", "../"))
-# print(get_files_info("calculator"))
 
-# print(get_file_content("calculator", "lorem.txt"))
-# print(get_file_content("calculator", "main.py"))
-# print(get_file_content("calculator", "pkg/calculator.py"))
-# print(get_file_content("calculator", "/bin/cat"))
+test_cases = {
+    "get_files_info": {
+        "func": get_files_info,
+        "args": [
+            ("calculator", "."),
+            ("calculator", "pkg"),
+            ("calculator",),
+            ("calculator", "/bin"),
+            ("calculator", "../")
+        ]
+    },
+    "get_file_content": {
+        "func": get_file_content,
+        "args": [
+            ("calculator", "lorem.txt"),
+            ("calculator", "main.py"),
+            ("calculator", "pkg/calculator.py"),
+            ("calculator", "/bin/cat")
+        ]
+    },
+    "write_file": {
+        "func": write_file,
+        "args": [
+            ("calculator", "lorem.txt", "wait, this isn't lorem ipsum"),
+            ("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet"),
+            ("calculator", "/tmp/temp.txt", "this should not be allowed")
+        ]
+    },
+    "run_python_file": {
+        "func": run_python_file,
+        "args": [
+            ("calculator", "main.py"),
+            ("calculator", "tests.py"),
+            ("calculator", "../main.py"),
+            ("calculator", "nonexistent.py")
+        ]
+    }
+}
 
-# print(write_file("calculator", "lorem.txt", "wait, this isn't lorem ipsum"))
-# print(write_file("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet"))
-# print(write_file("calculator", "/tmp/temp.txt", "this should not be allowed"))
+test_group = test_cases.get(sys.argv[1])
 
-print(run_python_file("calculator", "main.py"))
-print(run_python_file("calculator", "tests.py"))
-print(run_python_file("calculator", "../main.py"))
-print(run_python_file("calculator", "nonexistent.py"))
+if test_group:
+    func = test_group["func"]
+    for args in test_group["args"]:
+        print(func(*args))
