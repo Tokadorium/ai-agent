@@ -9,6 +9,7 @@ from config.function_declaration_types import available_functions
 from config.system_prompt import system_prompt
 from functions.call_function import call_function
 
+WORKING_DIR = "./calculator"
 
 load_dotenv()
 api_key = os.environ.get("GEMINI_API_KEY")
@@ -17,9 +18,7 @@ client = genai.Client(api_key=api_key)
 if len(sys.argv) < 2:
     print("expected prompt")
     sys.exit(1)
-
 args = {"user_prompt": sys.argv[1], "--verbose": False, "--log": False}
-
 for arg in sys.argv:
     if arg in args:
         args[arg] = True

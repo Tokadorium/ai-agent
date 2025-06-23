@@ -1,11 +1,11 @@
 from google.genai import types
 
+from main import WORKING_DIR
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
 from functions.write_file import write_file
 from functions.run_python import run_python_file
 
-WORKING_DIR = "./calculator"
 
 def call_function(function_call, verbose=False):
     if verbose:
@@ -17,7 +17,7 @@ def call_function(function_call, verbose=False):
         "get_files_info": get_files_info,
         "get_file_content": get_file_content,
         "write_file": write_file,
-        "run_python_file": run_python_file
+        "run_python_file": run_python_file,
     }
 
     selected_func = functions[function_call.name]
