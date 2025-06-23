@@ -50,4 +50,5 @@ test_group = test_cases.get(sys.argv[1])
 if test_group:
     func = test_group["func"]
     for args in test_group["args"]:
+        print(f"\nExecuting {func.__name__}{args}:")
         print(func(*args))
