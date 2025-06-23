@@ -9,7 +9,6 @@ from config.function_declaration_types import available_functions
 from config.system_prompt import system_prompt
 from functions.call_function import call_function
 
-WORKING_DIR = "./calculator"
 
 load_dotenv()
 api_key = os.environ.get("GEMINI_API_KEY")

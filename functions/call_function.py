@@ -1,6 +1,6 @@
 from google.genai import types
 
-from main import WORKING_DIR
+from config.constants import WORKING_DIR
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
 from functions.write_file import write_file
